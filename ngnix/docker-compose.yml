@@ -1,0 +1,23 @@
+version: "3"
+services:
+  production_nginx:
+    container_name: production_nginx
+    image: plkrcon23q1:8083/nginx:1.17-alpine
+    ipc: shareable
+    networks:
+      - ngnix_port_ness_net
+    ports:
+      - 8443:8443/tcp
+      - 9443:9443/tcp
+    restart: unless-stopped
+    volumes:
+      - ngnix_nginx-ssl:/etc/nginx/ssl:rw
+      - ngnix_nginx-conf:/etc/nginx/conf.d:rw
+networks:
+  ngnix_port_ness_net:
+
+volumes:
+  ngnix_nginx-ssl:
+  ngnix_nginx-conf:
+
+
