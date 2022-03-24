@@ -1,12 +1,12 @@
 FROM nginx:1.21.6-alpine
 
 ## settings
-COPY nexus.conf /etc/nginx/conf.d/
-COPY portainer.conf /etc/nginx/conf.d/
+COPY default.conf /etc/nginx/conf.d/
+COPY nginx.conf /etc/nginx/
 
 ## certs
-COPY c_portainer.pem /etc/nginx/ssl/
-COPY k_portainer.pem /etc/nginx/ssl/
+COPY cicd.crt /etc/ssl/certs/
+COPY cicd.pem /etc/ssl/private/
 
 ## Remove default nginx website
 RUN rm -rf /usr/share/nginx/html/*
